@@ -34,7 +34,7 @@ class ArticlesController extends Controller
 
       $article->save();
 
-      //return a response from server to the frontend. Will get either a success or Error
+      //return a response from server to the frontend. Will get either a success or Error. I Prefer this command on backend
       return Response::json(["success" => "Congratulations You Did It!"]);
     }
 
