@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use Response;
+use Illuminate\Support\Facades\Validator;
+use Purifier;
 
 class ArticlesController extends Controller
 {
@@ -20,6 +22,18 @@ class ArticlesController extends Controller
     //store article - takes request param from frontend
     public function store(Request $request)
     {
+      $rules = [
+        'title' => 'required',
+        'body' => 'required',
+        'image' => 'required'
+      ];
+
+      $validator = Validator::make(Purifier::clean($request->all()), $rules);
+      if($validator->fails())
+      {
+        return Response::json(['error'=>"Error. Please Fill Out All Fields!"]);
+      }
+
       $article = new Article;
 
       $article->title = $request->input('title');
@@ -36,11 +50,27 @@ class ArticlesController extends Controller
 
       //return a response from server to the frontend. Will get either a success or Error. I Prefer this command on backend
       return Response::json(["success" => "Congratulations You Did It!"]);
+
+
     }
+
+
 
     //update function - 2 params id & request
     public function update($id, Request $request)
     {
+      $rules = [
+        'title' => 'required',
+        'body' => 'required',
+        'image' => 'required'
+      ];
+
+      $validator = Validator::make(Purifier::clean($request->all()), $rules);
+      if($validator->fails())
+      {
+        return Response::json(['error'=>"ERROR! Fields Did Not Update!"]);
+      }
+      
       $article = Article::find($id);
 
       $article->title = $request->input('title');
