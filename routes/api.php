@@ -17,3 +17,5 @@ Route::get('getArticles', 'ArticlesController@index');
 Route::post('updateArticle/{id}', 'ArticlesController@update');
 Route::get('showArticle/{id}', 'ArticlesController@show');
 Route::post('deleteArticle/{id}', 'ArticlesController@destroy');
+Route::post('signup', 'UsersController@signUp');
+Route::post('signin' 'UsersController@signIn');
