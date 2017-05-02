@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::any('{path?}', 'UsersController@index')->where('path', '.+');

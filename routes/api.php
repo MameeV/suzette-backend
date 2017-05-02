@@ -18,4 +18,6 @@ Route::post('updateArticle/{id}', 'ArticlesController@update');
 Route::get('showArticle/{id}', 'ArticlesController@show');
 Route::post('deleteArticle/{id}', 'ArticlesController@destroy');
 Route::post('signup', 'UsersController@signUp');
-Route::post('signin' 'UsersController@signIn');
+Route::post('signin', 'UsersController@signIn');
+//enter more routes here, leaving below as last route!
+Route::any('{path?}', 'UsersController@index')->where('path', '.+');
