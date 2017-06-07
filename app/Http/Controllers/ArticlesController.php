@@ -7,9 +7,15 @@ use App\Article;
 use Response;
 use Illuminate\Support\Facades\Validator;
 use Purifier;
+use JWTAuth;
+use Auth;
 
 class ArticlesController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('jwt.auth', ['only'=>['store']]);
+  }
     //will get list of Articles
     public function index()
     {
@@ -70,7 +76,7 @@ class ArticlesController extends Controller
       {
         return Response::json(['error'=>"ERROR! Fields Did Not Update!"]);
       }
-      
+
       $article = Article::find($id);
 
       $article->title = $request->input('title');

@@ -10,6 +10,7 @@ use Hash;
 use App\User;
 use JWTAuth;
 use File;
+use Mail;
 
 class UsersController extends Controller
 {
