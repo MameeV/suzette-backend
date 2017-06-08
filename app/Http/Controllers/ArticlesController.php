@@ -14,7 +14,7 @@ class ArticlesController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('jwt.auth', ['only'=>['store']]);
+    $this->middleware('jwt.auth', ['only'=>['store', 'destroy', 'update']]);
   }
     //will get list of Articles
     public function index()

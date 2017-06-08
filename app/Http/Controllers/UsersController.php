@@ -76,7 +76,9 @@ class UsersController extends Controller
 
       $email = $request->input('email');
       $body = $request->input('message');
-
+      
+//Mail::send(array('text' => 'view'), $data, $callback);
+//Text Onlt! Dont want embedded attachments!
       Mail::send('emails.contact', array('email'=>$email,'body'=>$body), function($email, $body, $message)
       {
         $message->from($email, $email);
