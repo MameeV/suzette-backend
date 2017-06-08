@@ -75,11 +75,12 @@ class UsersController extends Controller
       }
 
       $email = $request->input('email');
-      $message = $request->input('message');
+      $body = $request->input('message');
 
-      Mail::send('emails.contact', array('email'=>$email,'message'=>$message), function($message)
+      Mail::send('emails.contact', array('email'=>$email,'body'=>$body), function($email, $body, $message)
       {
-        $message->to('suzette.verbeck@gmail.com', 'Suzette Verbeck')->subject('Contact From mrsverbeck.com');
+        $message->from($email, $email);
+        $message->to('suzette.verbeck@gmail.com', 'Suzette Verbeck')->subject('mrsverbeck.com');
       });
         return Response::json(['success'=>"Success! Thanks for contacting us."]);
     }

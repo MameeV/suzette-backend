@@ -1,5 +1,5 @@
-{{$email}}
+<?php var_dump($email) ?>
 
 <br/>
 
-{{$message}}
+<?php var_dump($message) ?>
