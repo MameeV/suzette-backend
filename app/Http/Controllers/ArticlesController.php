@@ -91,6 +91,12 @@ class ArticlesController extends Controller
       return Response::json(["success" => "Article Has Been Updated!"]);
     }
 
+      $user=Auth::user();
+       if($user->roleID != 1)
+       {
+         return Response::json(["error" => "Not Allowed!"]);
+       }
+
     //shows individal article
     public function show($id)
     {
@@ -108,6 +114,10 @@ class ArticlesController extends Controller
 
       return Response::json(["success" => "Article Deleted."]);
     }
-
+      $user=Auth::user();
+      if($user->roleID != 1)
+      {
+       return Response::json(["error" => "Not Allowed!"]);
+      }
 
 }
